@@ -1,0 +1,89 @@
+import sys
+
+#Read in data from first argument file:
+data = open(str(sys.argv[1]))
+text = data.readline().rstrip('\n')
+params = data.readline().rstrip('\n')
+
+k, d = params.split(" ")
+k, d = int(k), int(d)
+
+
+
+# Define accessory functions:
+
+def hammingDistance(p, q):
+        d = 0
+        n = len(p)
+        for i in range(n):
+                if p[i] != q[i]:
+                        d = d + 1
+        return d
+
+def neighbors(pattern, d):
+        pattern = pattern.strip(" ")
+        if d == 0:
+                return {pattern} #only neighbor with 0 distance is self
+        if len(pattern) == 1:
+                return {"A", "C", "G", "T"} #Base Case
+
+        neighborhood = set() #Empty set of neighbors
+        suffixNeighbors = neighbors(pattern[1:], d)
+
+        for substring in suffixNeighbors:
+                if hammingDistance(pattern[1:], substring) < d:
+                        for base in ["A", "C", "G", "T"]:
+                                neighborhood.add(base + substring)
+                else:
+                        neighborhood.add(pattern[0] + substring)
+
+        return neighborhood
+
+def maxMap(map):
+        max = 0
+        for key in map:
+import sys
+
+#Read in data from first argument file:
+data = open(str(sys.argv[1]))
+text = data.readline().rstrip('\n')
+params = data.readline().rstrip('\n')
+
+k, d = params.split(" ")
+k, d = int(k), int(d)
+
+
+
+# Define accessory functions:
+
+def hammingDistance(p, q):
+        d = 0
+        n = len(p)
+        for i in range(n):
+                if p[i] != q[i]:
+                        d = d + 1
+        return d
+
+def neighbors(pattern, d):
+        pattern = pattern.strip(" ")
+        if d == 0:
+                return {pattern} #only neighbor with 0 distance is self
+        if len(pattern) == 1:
+                return {"A", "C", "G", "T"} #Base Case
+
+        neighborhood = set() #Empty set of neighbors
+        suffixNeighbors = neighbors(pattern[1:], d)
+
+        for substring in suffixNeighbors:
+                if hammingDistance(pattern[1:], substring) < d:
+                        for base in ["A", "C", "G", "T"]:
+                                neighborhood.add(base + substring)
+                else:
+                        neighborhood.add(pattern[0] + substring)
+
+        return neighborhood
+
+def maxMap(map):
+        max = 0
+        for key in map:
+
